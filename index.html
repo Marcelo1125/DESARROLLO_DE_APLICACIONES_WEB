@@ -2,38 +2,115 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Proyecto ETERNA</title>
+    <title>ETERNA</title>
     <style>
         body {
-            background-color: lightblue; /* color de fondo */
+            background-color: rgb(43, 207, 106); /* color de fondo */
+            font-family: Arial, sans-serif;
         }
-         h1 {
+        h3 {
+            text-align: center; /* centra todos los h3 */
+        }
+
+        h1 {
             text-align: center; /* centra el título principal */
         }
-        h6
-        {
+        h2, h3, h4, h5, h6 {
             font-size: 20px; /* tamaño personalizado */
+            text-align: center;
         }
-         h5
-        {
-            font-size: 20px; /* tamaño personalizado */
+        nav ul { /* agregado */
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0;
         }
-         h4
-        {
-            font-size: 20px; /* tamaño personalizado */
+        nav a { /* agregado */
+            text-decoration: none;
+            color: rgb(11, 11, 158);
+            font-weight: bold;
         }
-         h3
-        {
-            font-size: 20px; /* tamaño personalizado */
+        footer { /* agregado */
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
         }
+         /* estilo para el logo */
+        .logo {
+            position: absolute; /* fija la imagen */
+            top: 10px;          /* distancia desde arriba */
+            left: 10px;         /* distancia desde la izquierda */
+            width: 300px;        /* tamaño de la imagen */
+        } 
     </style>
 </head>
 <body>
-    <h1>Sistema de Gestión Académica </h1>
-    <h2>Plataforma para optimizar procesos educativos y técnicos</h2>
-    <h3>Desarrollado por McArmonix</h3>
-    <h4>Gestión de repertorio</h4>
-    <h5>Planificación de ensayos</h5>
-    <h6>Acceso remoto</h6>
+     <img src="logo.jpeg" alt="Logo ETERNA" class="logo">
+    <!-- agregado: header con nav -->
+    <header>
+        <h1>Sistema de Gestión Académica</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#quienes">Quiénes Somos</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- agregado: main -->
+    <main>
+        <!-- section inicio -->
+        <section id="inicio">
+            <article>
+                <h2>Plataforma para optimizar procesos educativos y técnicos</h2>
+            </article>
+        </section>
+
+        <!-- section quienes somos -->
+        <section id="quienes">
+            <article>
+                <h3>Quiénes Somos</h3>
+               <<p style="text-align: center; color: red;">
+    Equipo dedicado al desarrollo de soluciones digitales para educación y música.
+</p>
+
+
+            </article>
+        </section>
+
+        <!-- section servicios -->
+        <section id="servicios">
+            <article>
+                <h3>Desarrollado por McArmonix</h3>
+                <h4>Gestión de repertorio</h4>
+                <h5>Planificación de ensayos</h5>
+                <h6>Acceso remoto</h6>
+                <video controls width="500" height="280">
+    <source src="video_proyecto.mp4" type="video/mp4">
+</video>
+
+            </article>
+            <aside>
+                <p>Recursos adicionales y enlaces relacionados.</p>
+            </aside>
+        </section>
+
+        <!-- section contacto -->
+        <section id="contacto">
+            <article>
+                <h3>Contacto</h3>
+                <p>Escríbenos a: <a href="mailto:info@eterna.com">info@eterna.com</a></p>
+            </article>
+        </section>
+    </main>
+
+    <!-- agregado: footer -->
+    <footer>
+        <p>&copy; 2026 Proyecto ETERNA - Todos los derechos reservados</p>
+    </footer>
 </body>
 </html>
+
