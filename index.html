@@ -2,115 +2,123 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>ETERNA</title>
+    <title>Proyecto ETERNA</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
-            background-color: rgb(43, 207, 106); /* color de fondo */
+            background-color: lightblue;
             font-family: Arial, sans-serif;
         }
-        h3 {
-            text-align: center; /* centra todos los h3 */
-        }
-
         h1 {
-            text-align: center; /* centra el título principal */
-        }
-        h2, h3, h4, h5, h6 {
-            font-size: 20px; /* tamaño personalizado */
             text-align: center;
         }
-        nav ul { /* agregado */
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 0;
+        h2, h3, h4, h5, h6 {
+            font-size: 20px;
+            text-align: center;
         }
-        nav a { /* agregado */
-            text-decoration: none;
-            color: rgb(11, 11, 158);
-            font-weight: bold;
-        }
-        footer { /* agregado */
+        footer {
             text-align: center;
             margin-top: 30px;
             font-size: 14px;
         }
-         /* estilo para el logo */
         .logo {
-            position: absolute; /* fija la imagen */
-            top: 10px;          /* distancia desde arriba */
-            left: 10px;         /* distancia desde la izquierda */
-            width: 300px;        /* tamaño de la imagen */
-        } 
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 150px;
+        }
     </style>
 </head>
 <body>
-     <img src="logo.jpeg" alt="Logo ETERNA" class="logo">
-    <!-- agregado: header con nav -->
-    <header>
-        <h1>Sistema de Gestión Académica</h1>
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#quienes">Quiénes Somos</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Logo fijo -->
+    <img src="logo.jpeg" alt="Logo ETERNA" class="logo img-fluid">
 
-    <!-- agregado: main -->
-    <main>
-        <!-- section inicio -->
-        <section id="inicio">
-            <article>
-                <h2>Plataforma para optimizar procesos educativos y técnicos</h2>
-            </article>
+    <!-- Menú responsivo con Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#inicio">ETERNA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#quienes">Quiénes Somos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <!-- Inicio -->
+        <section id="inicio" class="mb-5">
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h2 class="card-title text-primary">Plataforma para optimizar procesos educativos y técnicos</h2>
+                    <p class="card-text text-muted">Bienvenido al sistema de gestión académica ETERNA</p>
+                </div>
+            </div>
         </section>
 
-        <!-- section quienes somos -->
-        <section id="quienes">
-            <article>
-                <h3>Quiénes Somos</h3>
-               <<p style="text-align: center; color: red;">
-    Equipo dedicado al desarrollo de soluciones digitales para educación y música.
-</p>
-
-
-            </article>
+        <!-- Quiénes Somos -->
+        <section id="quienes" class="mb-5">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Quiénes Somos</h3>
+                    <p class="card-text text-success">Equipo dedicado al desarrollo de soluciones digitales para educación y música.</p>
+                   <img src="equipo.jpg" alt="Equipo de trabajo" class="img-fluid rounded">
+                </div>
+            </div>
         </section>
 
-        <!-- section servicios -->
-        <section id="servicios">
-            <article>
-                <h3>Desarrollado por McArmonix</h3>
-                <h4>Gestión de repertorio</h4>
-                <h5>Planificación de ensayos</h5>
-                <h6>Acceso remoto</h6>
-                <video controls width="500" height="280">
-    <source src="video_proyecto.mp4" type="video/mp4">
-</video>
-
-            </article>
-            <aside>
-                <p>Recursos adicionales y enlaces relacionados.</p>
-            </aside>
+        <!-- Servicios -->
+        <section id="servicios" class="mb-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card shadow">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Desarrollado por McArmonix</h3>
+                            <h4>Gestión de repertorio</h4>
+                            <h5>Planificación de ensayos</h5>
+                            <h6>Acceso remoto</h6>
+                            <video class="w-75 mt-3" controls>
+                                <source src="video_proyecto.mp4" type="video/mp4">
+                                Tu navegador no soporta video.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <aside class="card shadow">
+                        <div class="card-body">
+                            <p>Recursos adicionales y enlaces relacionados.</p>
+                            <a href="#contacto" class="btn btn-success">Contáctanos</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
         </section>
 
-        <!-- section contacto -->
-        <section id="contacto">
-            <article>
-                <h3>Contacto</h3>
-                <p>Escríbenos a: <a href="mailto:info@eterna.com">info@eterna.com</a></p>
-            </article>
+        <!-- Contacto -->
+        <section id="contacto" class="mb-5">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Contacto</h3>
+                    <p>Escríbenos a: <a href="mailto:info@eterna.com" class="btn btn-outline-primary">info@eterna.com</a></p>
+                </div>
+            </div>
         </section>
     </main>
 
-    <!-- agregado: footer -->
-    <footer>
+    <footer class="bg-dark text-white py-3">
         <p>&copy; 2026 Proyecto ETERNA - Todos los derechos reservados</p>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
