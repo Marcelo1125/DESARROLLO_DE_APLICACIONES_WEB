@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Registrar Estudiantes</h2>
+<form method="POST" action="{{ url_for('nuevo_estudiante') }}">
+    <label>Nombre:</label>
+    <input type="text" name="nombre" required>
+    <label>Email:</label>
+    <input type="email" name="email" required>
+    <button type="submit">Registrar</button>
+</form>
+{% endblock %}
+

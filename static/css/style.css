@@ -1,0 +1,21 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1967b4;
+}
+
+h1 {
+  color: #006699;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logo {
+  display: block;
+  margin: 20px auto;
+  width: 300px;   /* ancho en píxeles */
+  height: auto;   /* alto automático para no deformar */
+}
+body {
+  background: linear-gradient(to right, #dfe7eb, #212729); 
+  color: rgb(165, 69, 69); /*  color de fondo para que el texto contraste */ 
+}

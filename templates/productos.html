@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Productos</h2>
+
+  <!-- Botón para nuevo producto -->
+  <a href="{{ url_for('nuevo_producto') }}" class="btn btn-primary mb-3">Nuevo Producto</a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in productos %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.nombre }}</td>
+        <td>${{ p.precio }}</td>
+        <td>
+          <!-- Botón editar por cada producto -->
+          <a href="{{ url_for('editar_producto', id=p.id) }}" class="btn btn-warning btn-sm">Editar</a>
+
+          <!-- Botón eliminar (opcional, si luego agregas la ruta eliminar_producto) -->
+          {# <a href="{{ url_for('eliminar_producto', id=p.id) }}" class="btn btn-danger btn-sm">Eliminar</a> #}
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="4">No hay productos registrados.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
