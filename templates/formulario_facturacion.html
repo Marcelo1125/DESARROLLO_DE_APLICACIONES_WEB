@@ -1,5 +1,94 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Facturación</h2>
-<p>Aquí se mostrarán las facturas generadas.</p>
+<div class="factura-header mb-4 d-flex align-items-center">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Academia" style="height:80px; margin-right:20px;">
+    <h2 class="mb-0">Facturación - Academia de Música McArmonix</h2>
+</div>
+
+<form method="POST" action="{{ url_for('facturacion') }}">
+  <div class="table-responsive">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Estudiante / Cliente</th>
+          <th>Producto</th>
+          <th>Servicio</th>
+          <th>Cantidad</th>
+          <th>Forma de Pago</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <!-- ✅ Estudiante / Cliente con opción "Otro" -->
+          <td>
+            <select id="estudianteSelect" name="estudiante" class="form-control" onchange="toggleOtroCliente()">
+              <option value="">-- Seleccione --</option>
+              {% for e in estudiantes %}
+                <option value="{{ e.id }}">{{ e.nombre }}</option>
+              {% endfor %}
+              <option value="otro">Otro</option> <!-- ✅ recuperamos la opción "Otro" -->
+            </select>
+            <!-- Campo oculto que aparece si se elige "Otro" -->
+            <input type="text" id="otroClienteInput" name="cliente_nombre" class="form-control mt-2" placeholder="Ingrese nombre del cliente" style="display:none;">
+          </td>
+         
+ 
+
+          <!-- ✅ Producto -->
+          <td>
+            <select name="producto" class="form-control">
+              <option value="">-- Ninguno --</option>
+              {% for p in productos %}
+                <option value="{{ p.id }}">{{ p.nombre }}</option>
+              {% endfor %}
+            </select>
+          </td>
+
+          <!-- ✅ Servicio -->
+          <td>
+            <select name="servicio" class="form-control">
+              <option value="">-- Ninguno --</option>
+              {% for s in servicios %}
+                <option value="{{ s.id }}">{{ s.nombre }}</option>
+              {% endfor %}
+            </select>
+          </td>
+
+          <!-- ✅ Cantidad -->
+          <td>
+            <input type="number" name="cantidad" class="form-control" min="1">
+          </td>
+
+          <!-- ✅ Forma de Pago -->
+          <td>
+            <select name="forma_pago" class="form-control">
+              <option value="Efectivo">Efectivo</option>
+              <option value="Tarjeta">Tarjeta</option>
+              <option value="Transferencia">Transferencia</option>
+            </select>
+          </td>
+
+          <!-- ✅ Botón -->
+          <td>
+            <button type="submit" class="btn btn-primary">Generar Factura</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>
+
+<!-- ✅ Script para mostrar campo "Otro" -->
+<script>
+function toggleOtroCliente() {
+  const select = document.getElementById('estudianteSelect');
+  const input = document.getElementById('otroClienteInput');
+  if (select.value === 'otro') {
+    input.style.display = 'block';
+  } else {
+    input.style.display = 'none';
+  }
+}
+</script>
 {% endblock %}

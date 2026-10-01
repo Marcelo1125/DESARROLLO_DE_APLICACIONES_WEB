@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DecimalField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms import SelectField, IntegerField, SubmitField
+from wtforms.validators import DataRequired, NumberRange, Optional
 
 class FacturacionForm(FlaskForm):
-    cliente = StringField("Cliente", validators=[DataRequired()])
-    total = DecimalField("Total", validators=[DataRequired()])
-    submit = SubmitField("Guardar")
+    estudiante_id = SelectField("Estudiante", coerce=int, validators=[DataRequired()])
+    producto_id = SelectField("Producto", coerce=int, validators=[Optional()])
+    servicio_id = SelectField("Servicio", coerce=int, validators=[Optional()])
+    cantidad = IntegerField("Cantidad", validators=[Optional(), NumberRange(min=1)])
+    submit = SubmitField("Generar Factura")

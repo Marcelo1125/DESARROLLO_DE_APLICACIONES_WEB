@@ -1,5 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Proveedores</h2>
-<p>Aquí aparecerán los proveedores registrados en la base de datos.</p>
+<h2>{% if proveedor %}Editar Proveedor{% else %}Registrar Proveedor{% endif %}</h2>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.nombre.label }}<br>
+        {{ form.nombre(size=32) }}
+    </p>
+    <p>
+        {{ form.empresa.label }}<br>
+        {{ form.empresa(size=32) }}
+    </p>
+    <p>
+        {{ form.telefono.label }}<br>
+        {{ form.telefono(size=20) }}
+    </p>
+    <p>
+        {{ form.email.label }}<br>
+        {{ form.email(size=32) }}
+    </p>
+    <p>
+        <button type="submit">
+            {% if proveedor %}Guardar cambios{% else %}Registrar{% endif %}
+        </button>
+    </p>
+</form>
 {% endblock %}

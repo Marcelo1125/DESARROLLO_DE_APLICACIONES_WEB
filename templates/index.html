@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container text-center mt-5">
- <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ETERNA" class="logo"> 
-  <h1>Academia Musical </h1>
-  <p class="lead">Bienvenido al sistema de gestión de nuestra academia.</p>
+
+  <!-- Texto sobre el video -->
+  <h1>McArmonix</h1>
+  <h2>Academia de Música</h2>
+
+  <!-- Video centrado -->
+  <video width="600" height="200" controls autoplay muted loop>
+    <source src="{{ url_for('static', filename='video/video_intro.mp4') }}" type="video/mp4">
+    Tu navegador no soporta video.
+  </video>
+
+  <!-- Texto debajo del video -->
+  <p class="lead mt-4">Bienvenido al sistema de gestión de nuestra academia.</p>
+
 </div>
 {% endblock %}
+
+

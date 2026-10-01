@@ -7,7 +7,8 @@ from forms.facturacion_form import FacturacionForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'clave-secreta'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/academia.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:basadedatos@localhost:5432/academia'
+
 db = SQLAlchemy(app)
 
 # MODELOS
@@ -28,7 +29,7 @@ class Proveedor(db.Model):
 
 class Factura(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    cliente = db.Column(db.String(100), nullable=False)
+    estudiante = db.Column(db.String(100), nullable=False)
     producto = db.Column(db.String(100), nullable=False)
     total = db.Column(db.Float, nullable=False)
 
@@ -95,7 +96,7 @@ def facturacion():
 def nueva_factura():
     form = FacturacionForm()
     if form.validate_on_submit():
-        nueva = Factura(cliente=form.cliente.data, producto=form.producto.data, total=form.total.data)
+        nueva = Factura(cliente=form.estudiante.data, producto=form.producto.data, total=form.total.data)
         db.session.add(nueva)
         db.session.commit()
         return redirect(url_for('facturacion'))

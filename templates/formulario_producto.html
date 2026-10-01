@@ -1,7 +1,15 @@
+
 {% extends 'base.html' %}
 {% block content %}
 <div class="container mt-4">
-  <h2>{% if form.nombre.data %}Editar Producto{% else %}Nuevo Producto{% endif %}</h2>
+
+  <h2>
+    {% if form.nombre.data %}
+      Editar Producto
+    {% else %}
+      Nuevo Producto
+    {% endif %}
+  </h2>
 
   <form method="POST" action="">
     {{ form.hidden_tag() }}
@@ -16,8 +24,16 @@
       {{ form.precio(class="form-control", step="0.01") }}
     </div>
 
-    <!-- Botón Guardar -->
-    <button type="submit" class="btn btn-success">Guardar</button>
+    <div class="mb-3">
+      <label for="stock" class="form-label">Stock inicial</label>
+      {{ form.stock(class="form-control", min="0") }}
+    </div>
+
+    <button type="submit" class="btn btn-success">
+      Guardar
+    </button>
+
   </form>
 </div>
 {% endblock %}
+

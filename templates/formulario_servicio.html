@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{% if servicio %}Editar Servicio{% else %}Registrar Servicio{% endif %}</h2>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <p>
+        {{ form.nombre.label }}<br>
+        {{ form.nombre(size=40) }}
+    </p>
+
+    <p>
+        {{ form.descripcion.label }}<br>
+        {{ form.descripcion(size=60) }}
+    </p>
+
+    <p>
+        {{ form.precio.label }}<br>
+        {{ form.precio(step="0.01") }}
+    </p>
+
+    <p>
+        <button type="submit" class="btn btn-primary">
+            {% if servicio %}Guardar cambios{% else %}Registrar{% endif %}
+        </button>
+    </p>
+</form>
+{% endblock %}

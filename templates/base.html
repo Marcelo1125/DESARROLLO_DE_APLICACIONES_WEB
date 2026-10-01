@@ -1,51 +1,385 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Academia Musical</title>
-  <!-- Conexión al CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <!-- Bootstrap opcional -->
+
+  <!-- Bootstrap -->
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <!--color de fondo -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- Estilos propios -->
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+  <style>
+
+    /* =========================================
+       ESTRUCTURA GENERAL
+       ========================================= */
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+
+    /* =========================================
+       ENCABEZADO / NAVBAR
+       ========================================= */
+
+    .navbar {
+      flex-shrink: 0;
+      z-index: 1000;
+
+      /* NUEVO COLOR DEL ENCABEZADO */
+      background-color: #1c2d42 !important;
+    }
+
+
+    /* =========================================
+       MENÚ DE NAVEGACIÓN
+       ========================================= */
+
+    .navbar .nav-link {
+      color: #ffffff !important;
+      margin: 0 3px;
+      padding: 8px 14px !important;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+
+    /* Efecto al pasar el mouse */
+
+    .navbar .nav-link:hover {
+      background: linear-gradient(135deg, #c7b7a1, #d6cabe);
+      color: #ffffff !important;
+      transform: translateY(-1px);
+    }
+
+
+    /* =========================================
+       SECCIÓN ACTUALMENTE SELECCIONADA
+       ========================================= */
+
+    .navbar .nav-link.active {
+      background: linear-gradient(135deg, #b5c0ce, #b39787);
+      color: #ffffff !important;
+      font-weight: 600;
+      box-shadow: 0 3px 8px rgba(211, 162, 89, 0.35);
+    }
+
+
+    /* =========================================
+       LOGO
+       ========================================= */
+
+    .navbar-brand img {
+      object-fit: contain;
+    }
+
+
+    /* =========================================
+       CONTENIDO PRINCIPAL
+       ========================================= */
+
+    main {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      min-height: 0;
+    }
+
+
+    /* Espacio inferior */
+
+    main.container {
+      padding-bottom: 30px;
+    }
+
+
+    /* =========================================
+       FOOTER
+       ========================================= */
+
+    footer {
+      flex-shrink: 0;
+      z-index: 1000;
+
+      /* MISMO COLOR DEL ENCABEZADO */
+      background-color: #1e3a5f !important;
+    }
+
+  </style>
 
 </head>
+
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-       <!-- <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo ETERNA" width="40" height="40" class="d-inline-block align-text-top"> -->
-        Academia Musical
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item"><a class="nav-link" href="/estudiantes">Estudiantes</a></li>
-          <li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
-          <li class="nav-item"><a class="nav-link" href="/proveedores">Proveedores</a></li>
-          <li class="nav-item"><a class="nav-link" href="/facturacion">Facturación</a></li>
-          <li class="nav-item"><a class="nav-link" href="/servicios">Servicios</a></li>
-        </ul>
-      </div>
-    </div>
+
+  <!-- =========================================
+       NAVBAR
+       ========================================= -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+
+
+<div class="container-fluid">
+
+  <!-- Logo -->
+
+  <a
+    class="navbar-brand d-flex align-items-center"
+    href="{{ url_for('index') }}"
+  >
+
+    <img
+      src="{{ url_for('static', filename='img/logo.png') }}"
+      alt="Logo Academia"
+      style="height:40px; margin-right:10px;"
+    >
+
+    Academia Musical
+
+  </a>
+
+
+  <!-- Botón responsive -->
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Mostrar navegación"
+  >
+
+    <span class="navbar-toggler-icon"></span>
+
+  </button>
+
+
+  <!-- Menú -->
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+
+    <ul class="navbar-nav me-auto">
+
+      <!-- Estudiantes -->
+
+      <li class="nav-item">
+
+        <a
+          class="nav-link {% if request.endpoint == 'estudiantes' %}active{% endif %}"
+          href="{{ url_for('estudiantes') }}"
+        >
+          Estudiantes
+        </a>
+
+      </li>
+
+
+      <!-- Productos -->
+
+      <li class="nav-item">
+
+        <a
+          class="nav-link {% if request.endpoint == 'productos' %}active{% endif %}"
+          href="{{ url_for('productos') }}"
+        >
+          Productos
+        </a>
+
+      </li>
+
+
+      <!-- Servicios -->
+
+      <li class="nav-item">
+
+        <a
+          class="nav-link {% if request.endpoint == 'servicios' %}active{% endif %}"
+          href="{{ url_for('servicios') }}"
+        >
+          Servicios
+        </a>
+
+      </li>
+
+
+      <!-- Proveedores -->
+
+      <li class="nav-item">
+
+        <a
+          class="nav-link {% if request.endpoint == 'proveedores' %}active{% endif %}"
+          href="{{ url_for('proveedores') }}"
+        >
+          Proveedores
+        </a>
+
+      </li>
+
+
+      <!-- Generar Factura -->
+
+      <li class="nav-item">
+
+        <a
+          class="nav-link {% if request.endpoint == 'facturacion' %}active{% endif %}"
+          href="{{ url_for('facturacion') }}"
+        >
+          Generar Factura
+        </a>
+
+      </li>
+
+
+      <!-- Ver Facturas -->
+
+      <li class="nav-item">
+
+        <a
+          class="nav-link {% if request.endpoint == 'facturas' %}active{% endif %}"
+          href="{{ url_for('facturas') }}"
+        >
+          Ver Facturas
+        </a>
+
+      </li>
+
+    </ul>
+
+
+    <!-- =====================================
+         USUARIO
+         ===================================== -->
+
+    <ul class="navbar-nav">
+
+      {% if current_user.is_authenticated %}
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link {% if request.endpoint == 'logout' %}active{% endif %}"
+            href="{{ url_for('logout') }}"
+          >
+            Cerrar sesión
+          </a>
+
+        </li>
+
+      {% else %}
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link {% if request.endpoint == 'login' %}active{% endif %}"
+            href="{{ url_for('login') }}"
+          >
+            Iniciar sesión
+          </a>
+
+        </li>
+
+
+        <li class="nav-item">
+
+          <a
+            class="nav-link {% if request.endpoint == 'registro' %}active{% endif %}"
+            href="{{ url_for('registro') }}"
+          >
+            Registrarse
+          </a>
+
+        </li>
+
+      {% endif %}
+
+    </ul>
+
+  </div>
+
+</div>
+
+
   </nav>
 
-  <!-- Contenido dinámico -->
+  <!-- =========================================
+       CONTENIDO PRINCIPAL
+       ========================================= -->
+
   <main class="container mt-4">
-    {% block content %}
-    {% endblock %}
+
+
+<!-- Mensajes Flask -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+  {% if messages %}
+
+    {% for category, message in messages %}
+
+      <div
+        class="alert alert-{{ category }} alert-dismissible fade show"
+        role="alert"
+      >
+
+        {{ message }}
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Cerrar"
+        ></button>
+
+      </div>
+
+    {% endfor %}
+
+  {% endif %}
+
+{% endwith %}
+
+
+<!-- Contenido de cada página -->
+
+{% block content %}{% endblock %}
+
+
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3 mt-5">
-    <p>&copy; 2026 Academia Musical- Todos los derechos reservados</p>
+  <!-- =========================================
+       FOOTER
+       ========================================= -->
+
+  <footer class="text-white text-center py-3">
+
+
+<p class="mb-0">
+  &copy; 2026 Academia Musical - Todos los derechos reservados
+</p>
+
+
   </footer>
 
   <!-- Bootstrap JS -->
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

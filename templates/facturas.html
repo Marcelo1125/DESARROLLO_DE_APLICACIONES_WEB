@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="factura-header mb-4 d-flex align-items-center">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Academia" style="height:80px; margin-right:20px;">
+    <h2 class="mb-0">Facturas - Academia de Música McArmonix</h2>
+</div>
+
+<a href="{{ url_for('facturacion') }}" class="btn btn-primary mb-3">Nueva Factura</a>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped align-middle text-center">
+      <thead class="table-dark">
+          <tr>
+              <th>ID</th>
+              <th>Fecha</th>
+              <th>Estudiante / Cliente</th>
+              <th>Producto</th>
+              <th>Servicio</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th>IVA</th>
+              <th>Descuento</th>
+              <th>Total</th>
+              <th>Forma de Pago</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for factura in facturas %}
+          <tr>
+              <td>{{ factura.id }}</td>
+              <td>{{ factura.fecha }}</td>
+              <td>
+                {% if factura.estudiante %}
+                  {{ factura.estudiante.nombre }}
+                {% else %}
+                  {{ factura.cliente_nombre }}
+                {% endif %}
+              </td>
+              <td>{{ factura.producto.nombre if factura.producto else '-' }}</td>
+              <td>{{ factura.servicio.nombre if factura.servicio else '-' }}</td>
+              <td>{{ factura.cantidad if factura.cantidad else '-' }}</td>
+              <td>{{ "%.2f"|format(factura.subtotal) if factura.subtotal is not none else '-' }}</td>
+              <td>{{ "%.2f"|format(factura.iva) if factura.iva is not none else '-' }}</td>
+              <td>{{ "%.2f"|format(factura.descuento) if factura.descuento is not none else '-' }}</td>
+              <td><strong>{{ "%.2f"|format(factura.total) if factura.total is not none else '-' }}</strong></td>
+              <td>{{ factura.forma_pago if factura.forma_pago else '-' }}</td>
+              <td>{{ factura.estado if factura.estado else '-' }}</td>
+              <td>
+                  <a href="{{ url_for('factura_detalle', id=factura.id) }}" class="btn btn-sm btn-info">
+                      Ver / Imprimir
+                  </a>
+              </td>
+          </tr>
+          {% else %}
+          <tr>
+              <td colspan="13" class="text-center">No hay facturas registradas</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,7 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container mt-4">
-  <h2>Proveedores</h2>
-  <p>Aquí se gestionarán los proveedores de instrumentos y servicios.</p>
-</div>
+<h2>Lista de Proveedores</h2>
+
+<a href="{{ url_for('nuevo_proveedor') }}" class="btn btn-primary">Nuevo Proveedor</a>
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Empresa</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for proveedor in proveedores %}
+        <tr>
+            <td>{{ proveedor.id }}</td>
+            <td>{{ proveedor.nombre }}</td>
+            <td>{{ proveedor.empresa }}</td>
+            <td>{{ proveedor.telefono }}</td>
+            <td>{{ proveedor.email }}</td>
+            <td>
+                <a href="{{ url_for('editar_proveedor', id=proveedor.id) }}" class="btn btn-warning">Editar</a>
+                <form action="{{ url_for('eliminar_proveedor', id=proveedor.id) }}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="6">No hay proveedores registrados</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
+

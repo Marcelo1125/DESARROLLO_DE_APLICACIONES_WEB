@@ -1,0 +1,153 @@
+/* ✅ Fondo global para todas las ventanas */
+body {
+  background: linear-gradient(to right, #cac4a9, #dad0b5) !important; /* degradado azul verdoso */
+  font-family: Arial, sans-serif;
+  color: #333333; /* texto principal gris oscuro */
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* ✅ Si quieres usar una imagen de fondo en lugar del degradado */
+body.fondo-imagen {
+  background-image: url("../img/fondo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* ✅ Encabezados */
+h1 {
+  font-size: 60px;
+  color: #e75c0c;    /* naranja intenso */
+  text-align: center;
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 40px;
+  color: #004466;    /* azul institucional */
+  text-align: center;
+  margin-top: 10px;
+}
+
+p.lead {
+  font-size: 30px;
+  color: #130b0b;    /* negro suave */
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ✅ Estilos uniformes para todas las tablas */
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px auto;
+  font-size: 16px;
+  min-width: 80%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  background-color: #ffffff;   /* fondo blanco */
+  color: #333333;              /* texto gris oscuro */
+}
+
+/* ✅ Encabezado */
+.styled-table thead tr {
+  background-color: #004466; /* azul institucional */
+  color: #ffffff;            /* texto blanco */
+  text-align: center;
+}
+
+/* ✅ Celdas */
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  text-align: center;
+}
+
+/* ✅ Filas normales */
+.styled-table tbody tr {
+  border-bottom: 1px solid #cccccc; /* gris claro */
+}
+
+/* ✅ Filas pares (alternancia) */
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f9f9f9; /* gris muy claro */
+}
+
+/* ✅ Última fila */
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #004466; /* azul institucional */
+}
+
+/* ✅ Hover */
+.styled-table tbody tr:hover {
+  background-color: #e0f7fa; /* celeste suave */
+}
+.nav-link.active {
+  font-weight: bold;
+  color: #ffd700 !important; /* dorado */
+  border-bottom: 2px solid #ffd700;
+}
+/* ✅ Tarjeta individual de factura (vista vertical) */
+.factura-card {
+  background: #ffffff;
+  border: 2px solid #004466; /* azul institucional */
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 15px;
+  color: #333;
+}
+
+.factura-card p {
+  margin: 8px 0;
+}
+
+.factura-card .total {
+  font-weight: bold;
+  color: #e75c0c; /* naranja intenso para resaltar el total */
+}
+/* ✅ Tarjeta individual de factura (vista vertical) */
+.factura-card {
+  background: #ffffff;
+  border: 2px solid #004466; /* azul institucional */
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(158, 137, 137, 0.1);
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 15px;
+  color: #a37171;
+}
+
+.factura-card p {
+  margin: 8px 0;
+}
+
+.factura-card .total {
+  font-weight: bold;
+  color: #e75c0c; /* naranja intenso para resaltar el total */
+}
+
+/* ✅ Versión para impresión */
+@media print {
+  .btn { display: none; } /* oculta botones al imprimir */
+  .factura-header img { height: 60px; }
+  body { background: #fff !important; }
+}
+
+/*color factura*/
+.factura {
+    background-color: #ccd7e0;
+    border: 1px solid #084492;
+    border-radius: 10px;
+    padding: 25px;
+}
+.factura-header {
+    background-color: #bac1ca;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+}

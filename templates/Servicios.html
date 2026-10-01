@@ -1,18 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container mt-4">
-  <h2>Servicios Musicales</h2>
-  <form method="POST" class="mb-3">
-    <input type="text" name="nombre" placeholder="Nombre del servicio" required>
-    <input type="text" name="precio" placeholder="Precio" required>
-    <button type="submit" class="btn btn-success">Agregar</button>
-  </form>
+<h2>Lista de Servicios</h2>
 
-  <h3>Lista de Servicios</h3>
-  <ul>
-    {% for servicio in servicios %}
-      <li>{{ servicio[1] }} - ${{ servicio[2] }}</li>
-    {% endfor %}
-  </ul>
-</div>
+<a href="{{ url_for('nuevo_servicio') }}" class="btn btn-primary"> Nuevo Servicio</a>
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for servicio in servicios %}
+        <tr>
+            <td>{{ servicio.id }}</td>
+            <td>{{ servicio.nombre }}</td>
+            <td>{{ servicio.descripcion }}</td>
+            <td>${{ "%.2f"|format(servicio.precio) }}</td>
+            <td>
+                <a href="{{ url_for('editar_servicio', id=servicio.id) }}" class="btn btn-warning">Editar</a>
+                <form action="{{ url_for('eliminar_servicio', id=servicio.id) }}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">No hay servicios registrados</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

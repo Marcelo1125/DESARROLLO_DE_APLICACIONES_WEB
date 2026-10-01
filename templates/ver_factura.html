@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="factura-header mb-4 d-flex align-items-center">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Academia" style="height:80px; margin-right:20px;">
+    <h2 class="mb-0">Factura #{{ factura.id }}</h2>
+</div>
+
+<div class="factura-card">
+    <p><strong>Fecha:</strong> {{ factura.fecha }}</p>
+    <p><strong>Estudiante / Cliente:</strong>
+      {% if factura.estudiante %}
+        {{ factura.estudiante.nombre }}
+      {% else %}
+        {{ factura.cliente_nombre }}
+      {% endif %}
+    </p>
+    <p><strong>Producto:</strong> {{ factura.producto.nombre if factura.producto else '-' }}</p>
+    <p><strong>Servicio:</strong> {{ factura.servicio.nombre if factura.servicio else '-' }}</p>
+    <p><strong>Cantidad:</strong> {{ factura.cantidad }}</p>
+    <p><strong>Subtotal:</strong> ${{ "%.2f"|format(factura.subtotal) }}</p>
+    <p><strong>IVA:</strong> ${{ "%.2f"|format(factura.iva) }}</p>
+    <p><strong>Descuento:</strong> ${{ "%.2f"|format(factura.descuento) }}</p>
+    <p><strong>Total:</strong> <span class="total">${{ "%.2f"|format(factura.total) }}</span></p>
+    <p><strong>Forma de Pago:</strong> {{ factura.forma_pago }}</p>
+    <p><strong>Estado:</strong> {{ factura.estado }}</p>
+</div>
+
+<a href="{{ url_for('facturas') }}" class="btn btn-secondary mt-3">⬅ Volver al listado</a>
+<a href="#" onclick="window.print()" class="btn btn-success mt-3">🖨 Imprimir</a>
+{% endblock %}
